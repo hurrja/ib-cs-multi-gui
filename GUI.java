@@ -31,15 +31,15 @@ public class GUI extends JFrame
 
     // frame properties
     setSize (400, 300);
-    cardLayout = new CardLayout ();
+    cardLayout = new CardLayout (); // "card" stack of panels 
     setLayout (cardLayout);
 
-    // menu bar with one item for quitting the program
     JMenuBar menuBar = new JMenuBar ();
     JMenu fileMenu = new JMenu ("File");
     JMenuItem newItem = new JMenuItem ("New frame");
     newItem.addActionListener ((ActionEvent e) -> new GUI ());
     JMenuItem nextItem = new JMenuItem ("Next panel");
+    // switch from one panel to another
     nextItem.addActionListener ((ActionEvent e) -> (cardLayout.next (getContentPane ())));
     JMenuItem quitItem = new JMenuItem ("Quit");
     quitItem.addActionListener ((ActionEvent e) -> System.exit (0));
