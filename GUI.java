@@ -28,37 +28,46 @@ public class GUI extends JFrame
   public GUI ()
   {
     super ("A multi-panel / multi-frame demo");
-
+    final String RED_PANEL_NAME = "red";
+    final String BLUE_PANEL_NAME = "blue";
+    
     // frame properties
     setSize (400, 300);
-    cardLayout = new CardLayout (); // "card" stack of panels 
+    CardLayout cardLayout = new CardLayout (); // "card stack" layout of panels 
     setLayout (cardLayout);
 
+    // two panels, one of which will be shown at a time
+    JPanel redPanel = new JPanel ();
+    redPanel.setBackground (Color.red);
+    add (redPanel, RED_PANEL_NAME);
+    JPanel bluePanel = new JPanel ();
+    bluePanel.setBackground (Color.blue);
+    add (bluePanel, BLUE_PANEL_NAME);
+
+    // menu bar
     JMenuBar menuBar = new JMenuBar ();
     JMenu fileMenu = new JMenu ("File");
     JMenuItem newItem = new JMenuItem ("New frame");
     newItem.addActionListener ((ActionEvent e) -> new GUI ());
-    JMenuItem nextItem = new JMenuItem ("Next panel");
-    // switch from one panel to another
-    nextItem.addActionListener ((ActionEvent e) -> (cardLayout.next (getContentPane ())));
+
+    // menu item switching to one panel
+    JMenuItem redItem = new JMenuItem ("Red panel");
+    redItem.addActionListener ((ActionEvent e) -> (cardLayout.show (getContentPane (),
+                                                                    RED_PANEL_NAME)));
+    // menu item switching to other panel
+    JMenuItem blueItem = new JMenuItem ("Blue panel");
+    blueItem.addActionListener ((ActionEvent e) -> (cardLayout.show (getContentPane (),
+                                                                     BLUE_PANEL_NAME)));
+
     JMenuItem quitItem = new JMenuItem ("Quit");
     quitItem.addActionListener ((ActionEvent e) -> System.exit (0));
     fileMenu.add (newItem);
-    fileMenu.add (nextItem);
+    fileMenu.add (redItem);
+    fileMenu.add (blueItem);
     fileMenu.add (quitItem);
     menuBar.add (fileMenu);
     setJMenuBar (menuBar);
 
-    redPanel = new JPanel ();
-    redPanel.setBackground (Color.red);
-    add (redPanel);
-    bluePanel = new JPanel ();
-    bluePanel.setBackground (Color.blue);
-    add (bluePanel);
-
     setVisible (true); // show frame
   }
-
-  JPanel redPanel, bluePanel;
-  CardLayout cardLayout;
 }
