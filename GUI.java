@@ -28,15 +28,15 @@ public class GUI extends JFrame
   public GUI ()
   {
     super ("A multi-panel / multi-frame demo");
-    final String RED_PANEL_NAME = "red";
-    final String BLUE_PANEL_NAME = "blue";
-    
+
     // frame properties
     setSize (400, 300);
     CardLayout cardLayout = new CardLayout (); // "card stack" layout of panels 
     setLayout (cardLayout);
 
     // two panels, one of which will be shown at a time
+    final String RED_PANEL_NAME = "red";
+    final String BLUE_PANEL_NAME = "blue";
     JPanel redPanel = new JPanel ();
     redPanel.setBackground (Color.red);
     add (redPanel, RED_PANEL_NAME);
